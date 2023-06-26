@@ -4,7 +4,7 @@
   width: 100%;
   background-color: $primary-color;
   font-size: $primary-font-size;
-  color: $primary-font-color;
+  color: $light-color;
 
   &-wrapper {
     max-width: 1280px;
@@ -61,7 +61,7 @@
           cursor: pointer;
 
           .material-icons {
-            color: $primary-font-color;
+            color: $light-color;
           }
         }
       }

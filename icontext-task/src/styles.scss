@@ -16,6 +16,35 @@ $icontext-task-theme: mat.define-light-theme(
 
 @import "./app/shared/styles/variable.scss";
 
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $accent-color;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent {
+  background-color: #f44336;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: $accent-color;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #f44336;
+}
+
+.mat-progress-bar-fill::after {
+  background-color: $accent-color;
+}
+
+.mat-progress-bar-buffer {
+  background-color: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -24,10 +53,6 @@ html {
 body {
   margin: 0;
 }
-
-// main {
-//   display: block;
-// }
 
 .main {
   display: block;
@@ -45,18 +70,12 @@ body {
 
 h1 {
   font-size: 2em;
+}
+
+.mat-h3,
+.mat-subheading-2,
+.mat-typography h3 {
   margin: 0;
-}
-
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-
-pre {
-  font-family: monospace, monospace;
-  font-size: 1em;
 }
 
 a {
@@ -64,42 +83,9 @@ a {
   text-decoration: none;
 }
 
-abbr[title] {
-  border-bottom: none;
-  text-decoration: underline;
-  text-decoration: underline dotted;
-}
-
 b,
 strong {
   font-weight: bolder;
-}
-
-code,
-kbd,
-samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-small {
-  font-size: 80%;
-}
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
 }
 
 img {
@@ -151,23 +137,6 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
-fieldset {
-  padding: 0.35em 0.75em 0.625em;
-}
-
-legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
 textarea {
   overflow: auto;
 }
@@ -196,18 +165,6 @@ textarea {
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
   font: inherit;
-}
-
-details {
-  display: block;
-}
-
-summary {
-  display: list-item;
-}
-
-template {
-  display: none;
 }
 
 [hidden] {
