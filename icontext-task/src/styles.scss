@@ -14,6 +14,8 @@ $icontext-task-theme: mat.define-light-theme(
 );
 @include mat.all-component-themes($icontext-task-theme);
 
+@import "./app/shared/styles/variable.scss";
+
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -23,13 +25,27 @@ body {
   margin: 0;
 }
 
-main {
+// main {
+//   display: block;
+// }
+
+.main {
   display: block;
+  width: 100%;
+  background-color: $light-color;
+  font-size: $primary-font-size;
+  color: $primary-color;
+
+  &-wrapper {
+    max-width: 1280px;
+    padding: 10px 25px;
+    margin: 0 auto;
+  }
 }
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 0;
 }
 
 hr {
