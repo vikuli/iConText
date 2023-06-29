@@ -37,6 +37,24 @@ $icontext-task-theme: mat.define-light-theme(
   background-color: $accent-color;
 }
 
+.profile-form {
+  .mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+    left: 105%;
+    top: 0;
+    margin: 0;
+    font-size: 80%;
+  }
+
+  .mat-error {
+    width: 50%;
+    height: 39px;
+    padding: 6px;
+    background-color: #f44336;
+    color: $light-color;
+    border-radius: 9px;
+  }
+}
+
 .mat-progress-bar-buffer {
   background-color: #fafafa;
 }
