@@ -1,0 +1,60 @@
+<header class="header">
+  <div class="header-wrapper">
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/inventory']"
+            routerLinkActive="active"
+            class="nav-link"
+            >Inventory</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/reports']"
+            routerLinkActive="active"
+            class="nav-link"
+            >Reports</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/billing']"
+            routerLinkActive="active"
+            class="nav-link"
+            >Billing</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/profile']"
+            routerLinkActive="active"
+            class="nav-link"
+            >Profile</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <ul class="user-bar">
+      <li class="user-bar__profile">
+        <a
+          [routerLink]="['/profile']"
+          class="profile-link"
+          [ngClass]="{ ellipsis: localStorage.getUserName().length > 20 }"
+          >{{ localStorage.getUserName() | slice : 0 : 21 | titlecase }}</a
+        >
+      </li>
+      <li class="user-bar__button">
+        <button class="logout-button">
+          <span class="material-icons"> logout </span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</header>

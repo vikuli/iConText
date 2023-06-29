@@ -1,0 +1,67 @@
+@import "../../shared/styles/variable.scss";
+
+.main {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &__item {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin: 0;
+      }
+
+      &__name {
+        margin-bottom: 5px;
+        word-break: break-all;
+      }
+
+      .edit-button {
+        height: 24px;
+        background-color: transparent;
+        color: $accent-color;
+        border: none;
+        border-bottom: 1px solid transparent;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          color: $button-hover;
+          border-bottom: 1px solid $button-hover;
+        }
+      }
+    }
+
+    .profile-form {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &__buttons {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+      }
+
+      &__button {
+        width: 25%;
+      }
+
+      .cancel-button {
+        background-color: $warn-color;
+        text-align: center;
+
+        &:hover {
+          background-color: $warn-hover-color;
+        }
+      }
+    }
+  }
+}

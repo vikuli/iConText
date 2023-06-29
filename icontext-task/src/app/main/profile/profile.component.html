@@ -1,0 +1,156 @@
+<mat-progress-bar
+  mode="indeterminate"
+  class="progress-bar"
+  *ngIf="loading"
+></mat-progress-bar>
+<div class="curtain" [ngClass]="{ visible: loading }"></div>
+
+<main class="main">
+  <div class="main-wrapper">
+    <h1 class="title">Profile</h1>
+
+    <div *ngIf="!editMode" class="profile-info">
+      <div class="profile-info__item profile-info__name">
+        <h2>
+          {{
+            localStorage.getFirstName() + " " + localStorage.getLastName()
+              | titlecase
+          }}
+        </h2>
+        <button class="edit-button" (click)="editMode = true">
+          <span class="material-icons"> edit </span>
+        </button>
+      </div>
+
+      <p class="profile-info__item">
+        <span class="material-icons"> person_outline </span>
+        <span>{{ localStorage.getRole() | titlecase }}</span>
+      </p>
+
+      <p class="profile-info__item">
+        <span class="material-icons"> mail_outline </span>
+        <a href="mailto:{{ localStorage.getEmail() }}" class="link">{{
+          localStorage.getEmail()
+        }}</a>
+      </p>
+
+      <p *ngIf="localStorage.getUrl()" class="profile-info__item">
+        <span class="material-icons"> link </span>
+        <a href="{{ localStorage.getUrl() }}" class="link" target="_blank">{{
+          localStorage.getUrl()
+        }}</a>
+      </p>
+
+      <p class="profile-info__item">
+        <span class="material-icons"> call </span>
+        <a href="tel:+7{{ localStorage.getPhoneNumber() }}" class="link"
+          >+7{{ localStorage.getPhoneNumber() }}</a
+        >
+      </p>
+    </div>
+
+    <form *ngIf="editMode" class="profile-form" (ngSubmit)="[save()]">
+      <mat-form-field class="profile-form__control">
+        <mat-label [ngClass]="{ bright: true }">Email</mat-label>
+        <input type="email" matInput readonly="true" [formControl]="email" />
+      </mat-form-field>
+
+      <mat-form-field class="profile-form__control">
+        <mat-label>First Name</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="firstName"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error
+          *ngIf="
+            firstName.hasError('maxlength') && !firstName.hasError('required')
+          "
+        >
+          First name length must be no more than
+          {{ firstName.errors?.maxlength.requiredLength }} characters
+        </mat-error>
+        <mat-error *ngIf="firstName.hasError('required')">
+          First name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="profile-form__control">
+        <mat-label>Last Name</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="lastName"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error
+          *ngIf="
+            lastName.hasError('maxlength') && !lastName.hasError('required')
+          "
+        >
+          Last name length must be no more than
+          {{ lastName.errors?.maxlength.requiredLength }} characters
+        </mat-error>
+        <mat-error *ngIf="lastName.hasError('required')">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="profile-form__control">
+        <mat-label>Phone number</mat-label>
+        <span matPrefix>+7 &nbsp;</span>
+        <input
+          type="tel"
+          matInput
+          [formControl]="phoneNumber"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error
+          *ngIf="
+            (phoneNumber.hasError('maxlength') ||
+              phoneNumber.hasError('minlength') ||
+              phoneNumber.hasError('pattern')) &&
+            !phoneNumber.hasError('required')
+          "
+        >
+          Please enter a valid phone number
+        </mat-error>
+        <mat-error *ngIf="phoneNumber.hasError('required')">
+          Phone number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="profile-form__control">
+        <mat-label>WebSite URL</mat-label>
+        <input
+          type="url"
+          matInput
+          [formControl]="url"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="url.hasError('pattern')">
+          Please enter a valid URL
+        </mat-error>
+      </mat-form-field>
+
+      <div class="profile-form__buttons">
+        <button
+          type="submit"
+          class="profile-form__button save-button button"
+          [disabled]="
+            firstName.invalid || lastName.invalid || phoneNumber.invalid
+          "
+        >
+          Save
+        </button>
+        <button
+          (click)="cancel()"
+          class="profile-form__button cancel-button button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

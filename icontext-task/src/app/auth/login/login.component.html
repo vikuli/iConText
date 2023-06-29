@@ -1,0 +1,54 @@
+<mat-progress-bar
+  mode="indeterminate"
+  class="progress-bar"
+  *ngIf="loading"
+></mat-progress-bar>
+<div class="curtain" [ngClass]="{ visible: loading }"></div>
+
+<main class="main">
+  <div class="main-wrapper">
+    <form class="login-form" (ngSubmit)="[login()]">
+      <h3 class="login-form__title">Log In</h3>
+
+      <mat-form-field class="login-form__control">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          [formControl]="email"
+          [errorStateMatcher]="matcher"
+          placeholder="example@example.com"
+        />
+        <mat-error
+          *ngIf="email.hasError('email') && !email.hasError('required')"
+        >
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="login-form__control">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          [formControl]="password"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="password.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        class="login-form__button button"
+        [disabled]="email.invalid || password.invalid"
+      >
+        Log In
+      </button>
+    </form>
+  </div>
+</main>
