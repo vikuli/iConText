@@ -1,24 +1,5 @@
 @import "../../shared/styles/variable.scss";
 
-.progress-bar {
-  position: absolute;
-}
-
-.curtain {
-  display: none;
-
-  &.visible {
-    display: block;
-    position: absolute;
-    top: 54px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9;
-    background-color: #00000070;
-  }
-}
-
 .main {
   height: calc(100vh - 50px);
 
@@ -48,27 +29,6 @@
 
       &__button {
         width: 100%;
-        padding: 10px;
-        color: $light-color;
-        font-weight: 500;
-        border: none;
-        border-radius: 9px;
-        background-color: $accent-color;
-        cursor: pointer;
-        transition: 0.3s ease-in-out;
-
-        &:disabled {
-          opacity: 0.8;
-          cursor: default;
-
-          &:hover {
-            background-color: $accent-color;
-          }
-        }
-
-        &:hover {
-          background-color: $button-hover;
-        }
       }
     }
   }

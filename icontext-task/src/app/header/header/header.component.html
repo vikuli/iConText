@@ -21,9 +21,12 @@
     </nav>
     <ul class="user-bar">
       <li class="user-bar__profile">
-        <a [routerLink]="['/profile']" class="profile-link">{{
-          authService.userName
-        }}</a>
+        <a
+          [routerLink]="['/profile']"
+          class="profile-link"
+          [ngClass]="{ ellipsis: localStorage.getUserName().length > 20 }"
+          >{{ localStorage.getUserName() | slice : 0 : 21 | titlecase }}</a
+        >
       </li>
       <li class="user-bar__button">
         <button class="logout-button">

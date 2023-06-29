@@ -48,6 +48,12 @@
           &:hover {
             background-color: $header-link-hover;
           }
+
+          &.ellipsis {
+            &::after {
+              content: "...";
+            }
+          }
         }
       }
 

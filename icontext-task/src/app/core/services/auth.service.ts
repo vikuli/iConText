@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  isAuthorized: boolean = false;
-
-  userName: string = 'Your Name';
+  isAuthorized = false;
 
   loading = false;
 
-  constructor(private router: Router) {
-    if (localStorage.getItem('login')) {
+  constructor(
+    private router: Router,
+    public localStorage: LocalStorageService,
+  ) {
+    if (localStorage.getEmail() && localStorage.getPassword()) {
       this.isAuthorized = true;
-      this.userName = <string>localStorage.getItem('login');
     }
   }
 
   login() {
     this.loading = true;
     setTimeout(() => {
-      if (localStorage.getItem('login')) {
+      if (this.localStorage.getEmail() && this.localStorage.getPassword()) {
         this.loading = false;
         this.isAuthorized = true;
-        this.userName = <string>localStorage.getItem('login');
         this.router.navigate(['/']);
       }
     }, 2000);

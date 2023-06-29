@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +7,5 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(public authService: AuthService) {}
+  constructor(public localStorage: LocalStorageService) {}
 }
