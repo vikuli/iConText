@@ -1,13 +1,13 @@
 <mat-progress-bar
   mode="indeterminate"
   class="progress-bar"
-  *ngIf="authService.loading"
+  *ngIf="loading"
 ></mat-progress-bar>
-<div class="curtain" [ngClass]="{ visible: authService.loading }"></div>
+<div class="curtain" [ngClass]="{ visible: loading }"></div>
 
 <main class="main">
   <div class="main-wrapper">
-    <form class="login-form" (ngSubmit)="[login(), authService.login()]">
+    <form class="login-form" (ngSubmit)="[login()]">
       <h3 class="login-form__title">Log In</h3>
 
       <mat-form-field class="login-form__control">

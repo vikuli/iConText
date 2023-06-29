@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './header/header.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserAnimationsModule,
     HeaderModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 30000,
+      extendedTimeOut: 30000,
+      tapToDismiss: false,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      countDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

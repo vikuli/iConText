@@ -1,9 +1,9 @@
 <mat-progress-bar
   mode="indeterminate"
   class="progress-bar"
-  *ngIf="false"
+  *ngIf="loading"
 ></mat-progress-bar>
-<div class="curtain" [ngClass]="{ visible: false }"></div>
+<div class="curtain" [ngClass]="{ visible: loading }"></div>
 
 <main class="main">
   <div class="main-wrapper">
@@ -49,11 +49,7 @@
       </p>
     </div>
 
-    <form
-      *ngIf="editMode"
-      class="profile-form"
-      (ngSubmit)="[save(), (editMode = false)]"
-    >
+    <form *ngIf="editMode" class="profile-form" (ngSubmit)="[save()]">
       <mat-form-field class="profile-form__control">
         <mat-label [ngClass]="{ bright: true }">Email</mat-label>
         <input type="email" matInput readonly="true" [formControl]="email" />

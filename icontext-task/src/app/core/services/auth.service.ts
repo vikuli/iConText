@@ -8,8 +8,6 @@ import { LocalStorageService } from './local-storage.service';
 export class AuthService {
   isAuthorized = false;
 
-  loading = false;
-
   constructor(
     private router: Router,
     public localStorage: LocalStorageService,
@@ -20,13 +18,9 @@ export class AuthService {
   }
 
   login() {
-    this.loading = true;
-    setTimeout(() => {
-      if (this.localStorage.getEmail() && this.localStorage.getPassword()) {
-        this.loading = false;
-        this.isAuthorized = true;
-        this.router.navigate(['/home']);
-      }
-    }, 2000);
+    if (this.localStorage.getEmail() && this.localStorage.getPassword()) {
+      this.isAuthorized = true;
+      this.router.navigate(['/home']);
+    }
   }
 }

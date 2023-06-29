@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { MyErrorStateMatcher } from 'src/app/shared/forms/my-error-state-matcher';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -10,6 +10,8 @@ import { MyErrorStateMatcher } from 'src/app/shared/forms/my-error-state-matcher
 })
 export class ProfileComponent {
   editMode = false;
+
+  loading = false;
 
   email = new FormControl(this.localStorage.getEmail());
 
@@ -38,13 +40,37 @@ export class ProfileComponent {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(public localStorage: LocalStorageService) {}
+  constructor(
+    public localStorage: LocalStorageService,
+    public toastr: ToastrService,
+  ) {}
 
   save() {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.loading = false;
+      if (this.firstName.value!.length < 2 && this.lastName.value!.length < 2) {
+        this.showFirstNameError();
+        this.showLastNameError();
+      } else if (this.firstName.value!.length < 2) {
+        this.showFirstNameError();
+      } else if (this.lastName.value!.length < 2) {
+        this.showLastNameError();
+      } else {
+        this.updateProfile();
+        this.showSuccess();
+      }
+    }, 2000);
+  }
+
+  updateProfile() {
     const http: string = 'http://';
     const https: string = 'https://';
     const ftp: string = 'ftp://';
     const urlSubstr = this.url.value?.slice(0, 8).toLowerCase();
+
+    this.editMode = false;
 
     if (
       !this.url.value ||
@@ -71,5 +97,17 @@ export class ProfileComponent {
     this.lastName.setValue(this.localStorage.getLastName());
     this.phoneNumber.setValue(this.localStorage.getPhoneNumber());
     this.url.setValue(this.localStorage.getUrl());
+  }
+
+  showSuccess() {
+    this.toastr.success('Profile updated', 'Success!');
+  }
+
+  showFirstNameError() {
+    this.toastr.error('First name is too short', 'Error!');
+  }
+
+  showLastNameError() {
+    this.toastr.error('Last name is too short', 'Error!');
   }
 }
