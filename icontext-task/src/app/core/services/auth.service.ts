@@ -25,7 +25,7 @@ export class AuthService {
       if (this.localStorage.getEmail() && this.localStorage.getPassword()) {
         this.loading = false;
         this.isAuthorized = true;
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       }
     }, 2000);
   }
